@@ -1,12 +1,18 @@
 console.log("script.js 読み込み成功");
 
+// メッセージボタン部分
 const message = document.getElementById("message");
 const button = document.getElementById("change-btn");
 
-button.addEventListener("click", () => {
-  message.textContent = "ボタンがクリックされました！";
-});
+if (button && message) {
+  button.addEventListener("click", () => {
+    message.textContent = "ボタンがクリックされました！";
+  });
+}
+
+// 鍵盤部分
 const keys = document.querySelectorAll(".key");
+console.log("keyの数:", keys.length);
 
 keys.forEach((key) => {
   key.addEventListener("click", () => {
@@ -14,4 +20,3 @@ keys.forEach((key) => {
     console.log("押された音:", note);
   });
 });
-
