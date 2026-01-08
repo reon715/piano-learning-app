@@ -1,3 +1,5 @@
+console.log("script.js 読み込み成功");
+
 const message = document.getElementById("message");
 const button = document.getElementById("change-btn");
 
