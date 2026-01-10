@@ -30,7 +30,7 @@ const noteFrequencies = {
   B: 493.88,
 };
 
-// ← ★ 先に keys を作る！
+// ★ ここで一度だけ宣言
 const keys = document.querySelectorAll(".key");
 console.log("keyの数:", keys.length);
 
@@ -46,3 +46,4 @@ keys.forEach((key) => {
     }
   });
 });
+
