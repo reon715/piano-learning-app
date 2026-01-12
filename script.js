@@ -42,12 +42,12 @@ document.addEventListener("DOMContentLoaded", () => {
   console.log("keyの数:", keys.length);
 
   // クリック処理
- keys.forEach((key) => {
+keys.forEach((key) => {
   key.addEventListener("mousedown", () => {
     const note = key.dataset.note;
     const frequency = noteFrequencies[note];
 
-    key.classList.add("active"); // ← 光らせる
+    key.classList.add("active");
 
     if (frequency) {
       playNote(frequency);
@@ -56,11 +56,10 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   key.addEventListener("mouseup", () => {
-    key.classList.remove("active"); // ← 戻す
+    key.classList.remove("active");
   });
 
   key.addEventListener("mouseleave", () => {
-    key.classList.remove("active"); // ← はみ出し対策
+    key.classList.remove("active");
   });
-});
-
+}); // 
