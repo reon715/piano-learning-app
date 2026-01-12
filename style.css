@@ -12,7 +12,9 @@ body {
 /* 鍵盤グループ */
 .key-group {
   position: relative;
+  width: 60px;   /* ← 白鍵と同じ幅を明示 */
 }
+
 
 /* 共通 */
 .key {
