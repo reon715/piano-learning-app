@@ -34,10 +34,9 @@ body {
 }
 
 .white.active {
-  background: #ffd966;
+  background: red !important;
 }
 
 .black.active {
-  background: #ff9800;
+  background: blue !important;
 }
-
