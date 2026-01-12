@@ -46,8 +46,9 @@ body {
   position: absolute;
   top: 0;
   right: -20px;
-  z-index: 2;
+  z-index: 10;
 }
+
 
 .black:active {
   background: #444;
