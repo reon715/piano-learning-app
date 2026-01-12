@@ -37,5 +37,10 @@ body {
 
 .black:active {
   background: #444;
+
+}
+
+.key.active {
+  background: #ffd966; /* 押したときの色 */
 }
 
