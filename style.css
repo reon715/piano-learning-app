@@ -33,14 +33,11 @@ body {
   z-index: 10;
 }
 
-
-
-.black:active {
-  background: #444;
-
+.white.active {
+  background: #ffd966;
 }
 
-.key.active {
-  background: #ffd966; /* 押したときの色 */
+.black.active {
+  background: #ff9800;
 }
 
