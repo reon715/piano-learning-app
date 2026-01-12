@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   console.log("script.js 読み込み成功");
 
-  // 音の準備
+  // Audio 初期化
   const audioContext = new (window.AudioContext || window.webkitAudioContext)();
 
   // 音を鳴らす関数
@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
     osc.stop(audioContext.currentTime + 0.3);
   }
 
-  // 音階テーブル
+  // 音階 → 周波数
   const noteFrequencies = {
     C: 261.63,
     D: 293.66,
@@ -31,11 +31,11 @@ document.addEventListener("DOMContentLoaded", () => {
     B: 493.88,
   };
 
-  // ★ DOM完成後に取得
+  // 鍵盤取得
   const keys = document.querySelectorAll(".key");
   console.log("keyの数:", keys.length);
 
-  // 鍵盤クリック処理
+  // クリック処理
   keys.forEach((key) => {
     key.addEventListener("click", () => {
       const note = key.dataset.note;
