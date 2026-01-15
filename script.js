@@ -3,7 +3,7 @@ console.log("script.js 読み込み成功");
 // AudioContext
 const audioContext = new (window.AudioContext || window.webkitAudioContext)();
 
-// 音を鳴らす
+// 音を鳴らす関数
 function playNote(frequency) {
   const osc = audioContext.createOscillator();
   const gain = audioContext.createGain();
@@ -19,7 +19,7 @@ function playNote(frequency) {
   osc.stop(audioContext.currentTime + 0.3);
 }
 
-// 音階
+// 音階テーブル
 const noteFrequencies = {
   C: 261.63,
   "C#": 277.18,
@@ -39,7 +39,7 @@ const noteFrequencies = {
 const keys = document.querySelectorAll(".key");
 console.log("keyの数:", keys.length);
 
-// イベント
+// 鍵盤イベント
 keys.forEach((key) => {
   key.addEventListener("mousedown", () => {
     const note = key.dataset.note;
@@ -61,3 +61,4 @@ keys.forEach((key) => {
     key.classList.remove("active");
   });
 });
+
