@@ -62,4 +62,4 @@ keys.forEach((key) => {
   key.addEventListener("mouseleave", () => {
     key.classList.remove("active");
   });
-}); // 
+}); // ← ★これが無いとこのエラーが出る
