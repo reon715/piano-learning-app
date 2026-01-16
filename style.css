@@ -11,46 +11,48 @@ body {
 
 .key-group {
   position: relative;
-  width: 60px;
 }
 
-.white {
+.key.white {
   width: 60px;
   height: 200px;
+  border: 1px solid #000;
   background: white;
-  border: 1px solid black;
   display: flex;
   justify-content: center;
   align-items: flex-end;
   cursor: pointer;
 }
 
-.black {
-  width: 40px;
-  height: 120px;
-  background: black;
+.key.black {
   position: absolute;
   top: 0;
   right: -20px;
-  z-index: 10;
+  width: 40px;
+  height: 120px;
+  background: black;
+  z-index: 1;
   cursor: pointer;
 }
 
-/* 押しているとき */
+/* 押したとき */
 .key.white.active {
-  background: #ffd966;
+  background: #ddd;
 }
 
 .key.black.active {
   background: #555;
 }
 
+/* 正解・不正解 */
+.key.white.correct,
 .key.black.correct {
-  background: #00cc66 !important;
+  background: #90ee90 !important;
 }
 
+.key.white.wrong,
 .key.black.wrong {
-  background: #cc3333 !important;
+  background: #ff7f7f !important;
 }
 
 #question {
