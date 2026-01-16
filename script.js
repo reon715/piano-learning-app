@@ -3,7 +3,7 @@ console.log("script.js 読み込み成功");
 // AudioContext
 const audioContext = new (window.AudioContext || window.webkitAudioContext)();
 
-// 音を鳴らす関数
+// 音を鳴らす
 function playNote(frequency) {
   const osc = audioContext.createOscillator();
   const gain = audioContext.createGain();
@@ -35,11 +35,29 @@ const noteFrequencies = {
   B: 493.88,
 };
 
-// 鍵盤取得
+// 練習モード用
+const practiceNotes = ["C", "D", "E", "F", "G", "A", "B"];
+let currentNote = null;
+
+const questionEl = document.getElementById("question");
+const startBtn = document.getElementById("startBtn");
+
+// 次の問題
+function nextQuestion() {
+  const index = Math.floor(Math.random() * practiceNotes.length);
+  currentNote = practiceNotes[index];
+  questionEl.textContent = `「${currentNote}」を押してください`;
+}
+
+// スタート
+startBtn.addEventListener("click", () => {
+  nextQuestion();
+});
+
+// 鍵盤処理
 const keys = document.querySelectorAll(".key");
 console.log("keyの数:", keys.length);
 
-// 鍵盤イベント
 keys.forEach((key) => {
   key.addEventListener("mousedown", () => {
     const note = key.dataset.note;
@@ -49,7 +67,27 @@ keys.forEach((key) => {
 
     if (frequency) {
       playNote(frequency);
-      console.log("鳴らした音:", note);
+    }
+
+    // 練習モード判定
+    if (currentNote) {
+      if (note === currentNote) {
+        key.classList.add("correct");
+        questionEl.textContent = "正解！🎉";
+
+        setTimeout(() => {
+          key.classList.remove("correct");
+          nextQuestion();
+        }, 500);
+      } else {
+        key.classList.add("wrong");
+        questionEl.textContent = "違います 😢";
+
+        setTimeout(() => {
+          key.classList.remove("wrong");
+          questionEl.textContent = `「${currentNote}」を押してください`;
+        }, 500);
+      }
     }
   });
 
