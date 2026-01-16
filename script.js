@@ -35,6 +35,7 @@ const noteFrequencies = {
   B: 493.88,
 };
 
+
 // 練習モード用
 const practiceNotes = ["C", "D", "E", "F", "G", "A", "B"];
 let currentNote = null;
