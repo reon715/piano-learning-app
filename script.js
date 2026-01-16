@@ -37,7 +37,16 @@ const noteFrequencies = {
 
 
 // 練習モード用
-const practiceNotes = ["C", "D", "E", "F", "G", "A", "B"];
+const practiceNotes = [
+  "C", "C#",
+  "D", "D#",
+  "E",
+  "F", "F#",
+  "G", "G#",
+  "A", "A#",
+  "B"
+];
+
 let currentNote = null;
 
 const questionEl = document.getElementById("question");
