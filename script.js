@@ -1,5 +1,6 @@
 console.log("script.js 読み込み成功");
 
+
 // AudioContext
 const audioContext = new (window.AudioContext || window.webkitAudioContext)();
 
