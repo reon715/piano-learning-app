@@ -70,7 +70,7 @@ const titleEl = document.querySelector("h1");
 const descEl = document.getElementById("description");
 const questionEl = document.getElementById("question");
 const startBtn = document.getElementById("startBtn");
-const langBtn = document.getElementById("langBtn");
+const langBtn = console.log("langBtn:", langBtn);
 const keys = document.querySelectorAll(".key");
 
 // 言語更新
