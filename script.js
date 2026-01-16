@@ -1,6 +1,5 @@
 console.log("script.js 読み込み成功");
 
-
 // AudioContext
 const audioContext = new (window.AudioContext || window.webkitAudioContext)();
 
@@ -20,7 +19,7 @@ function playNote(frequency) {
   osc.stop(audioContext.currentTime + 0.3);
 }
 
-// 音階テーブル
+// 音階テーブル（白鍵＋黒鍵）
 const noteFrequencies = {
   C: 261.63,
   "C#": 277.18,
@@ -36,27 +35,21 @@ const noteFrequencies = {
   B: 493.88,
 };
 
-
 // 練習モード用
 const practiceNotes = [
-  "C", "C#",
-  "D", "D#",
-  "E",
-  "F", "F#",
-  "G", "G#",
-  "A", "A#",
-  "B"
+  "C","C#","D","D#","E","F","F#","G","G#","A","A#","B"
 ];
 
 let currentNote = null;
 
 const questionEl = document.getElementById("question");
 const startBtn = document.getElementById("startBtn");
+const keys = document.querySelectorAll(".key");
 
 // 次の問題
 function nextQuestion() {
-  const index = Math.floor(Math.random() * practiceNotes.length);
-  currentNote = practiceNotes[index];
+  const i = Math.floor(Math.random() * practiceNotes.length);
+  currentNote = practiceNotes[i];
   questionEl.textContent = `「${currentNote}」を押してください`;
 }
 
@@ -65,10 +58,7 @@ startBtn.addEventListener("click", () => {
   nextQuestion();
 });
 
-// 鍵盤処理
-const keys = document.querySelectorAll(".key");
-console.log("keyの数:", keys.length);
-
+// 鍵盤イベント
 keys.forEach((key) => {
   key.addEventListener("mousedown", () => {
     const note = key.dataset.note;
@@ -78,9 +68,9 @@ keys.forEach((key) => {
 
     if (frequency) {
       playNote(frequency);
+      console.log("鳴らした音:", note);
     }
 
-    // 練習モード判定
     if (currentNote) {
       if (note === currentNote) {
         key.classList.add("correct");
