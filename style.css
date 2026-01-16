@@ -42,16 +42,15 @@ body {
 }
 
 .key.black.active {
-  background: #ff9800;
+  background: #555;
 }
 
-/* 練習モード用 */
-.correct {
-  background: #90ee90 !important;
+.key.black.correct {
+  background: #00cc66 !important;
 }
 
-.wrong {
-  background: #ff7f7f !important;
+.key.black.wrong {
+  background: #cc3333 !important;
 }
 
 #question {
