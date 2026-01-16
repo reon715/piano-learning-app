@@ -5,7 +5,8 @@ body {
 
 #keyboard {
   display: flex;
-  position: relative;
+  justify-content: center;
+  margin-top: 20px;
 }
 
 .key-group {
@@ -16,11 +17,12 @@ body {
 .white {
   width: 60px;
   height: 200px;
-  border: 1px solid black;
   background: white;
+  border: 1px solid black;
   display: flex;
-  align-items: flex-end;
   justify-content: center;
+  align-items: flex-end;
+  cursor: pointer;
 }
 
 .black {
@@ -31,12 +33,29 @@ body {
   top: 0;
   right: -20px;
   z-index: 10;
+  cursor: pointer;
 }
 
-.white.active {
-  background: red !important;
+/* 押しているとき */
+.key.white.active {
+  background: #ffd966;
 }
 
-.black.active {
-  background: blue !important;
+.key.black.active {
+  background: #ff9800;
 }
+
+/* 練習モード用 */
+.correct {
+  background: #90ee90 !important;
+}
+
+.wrong {
+  background: #ff7f7f !important;
+}
+
+#question {
+  font-size: 20px;
+  margin: 10px;
+}
+
