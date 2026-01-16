@@ -1,9 +1,8 @@
 console.log("script.js 読み込み成功");
 
-// AudioContext
+// Audio
 const audioContext = new (window.AudioContext || window.webkitAudioContext)();
 
-// 音を鳴らす
 function playNote(frequency) {
   const osc = audioContext.createOscillator();
   const gain = audioContext.createGain();
@@ -19,7 +18,7 @@ function playNote(frequency) {
   osc.stop(audioContext.currentTime + 0.3);
 }
 
-// 音階テーブル（白鍵＋黒鍵）
+// 音階（白鍵＋黒鍵）
 const noteFrequencies = {
   C: 261.63,
   "C#": 277.18,
@@ -35,58 +34,94 @@ const noteFrequencies = {
   B: 493.88,
 };
 
-// 練習モード用
+// 練習モード
 const practiceNotes = [
   "C","C#","D","D#","E","F","F#","G","G#","A","A#","B"
 ];
 
 let currentNote = null;
 
+// 言語設定
+let currentLang = "ja";
+
+const texts = {
+  ja: {
+    title: "ピアノ学習アプリ",
+    description: "鍵盤をクリックすると音が鳴ります",
+    start: "練習スタート",
+    startMessage: "スタートを押してください",
+    question: (note) => `「${note}」を押してください`,
+    correct: "正解！🎉",
+    wrong: "違います 😢"
+  },
+  en: {
+    title: "Piano Learning App",
+    description: "Click a key to play a sound",
+    start: "Start Practice",
+    startMessage: "Press start to begin",
+    question: (note) => `Press "${note}"`,
+    correct: "Correct! 🎉",
+    wrong: "Wrong 😢"
+  }
+};
+
+// 要素取得
+const titleEl = document.querySelector("h1");
+const descEl = document.getElementById("description");
 const questionEl = document.getElementById("question");
 const startBtn = document.getElementById("startBtn");
+const langBtn = document.getElementById("langBtn");
 const keys = document.querySelectorAll(".key");
+
+// 言語更新
+function updateLanguage() {
+  const t = texts[currentLang];
+  titleEl.textContent = t.title;
+  descEl.textContent = t.description;
+  startBtn.textContent = t.start;
+  if (!currentNote) questionEl.textContent = t.startMessage;
+  langBtn.textContent = currentLang === "ja" ? "English" : "日本語";
+}
 
 // 次の問題
 function nextQuestion() {
   const i = Math.floor(Math.random() * practiceNotes.length);
   currentNote = practiceNotes[i];
-  questionEl.textContent = `「${currentNote}」を押してください`;
+  questionEl.textContent = texts[currentLang].question(currentNote);
 }
 
-// スタート
-startBtn.addEventListener("click", () => {
-  nextQuestion();
+// ボタン操作
+startBtn.addEventListener("click", nextQuestion);
+
+langBtn.addEventListener("click", () => {
+  currentLang = currentLang === "ja" ? "en" : "ja";
+  updateLanguage();
 });
 
-// 鍵盤イベント
+// 鍵盤処理
 keys.forEach((key) => {
   key.addEventListener("mousedown", () => {
     const note = key.dataset.note;
     const frequency = noteFrequencies[note];
 
     key.classList.add("active");
-
-    if (frequency) {
-      playNote(frequency);
-      console.log("鳴らした音:", note);
-    }
+    if (frequency) playNote(frequency);
 
     if (currentNote) {
       if (note === currentNote) {
         key.classList.add("correct");
-        questionEl.textContent = "正解！🎉";
-
+        questionEl.textContent = texts[currentLang].correct;
         setTimeout(() => {
           key.classList.remove("correct");
           nextQuestion();
         }, 500);
       } else {
         key.classList.add("wrong");
-        questionEl.textContent = "違います 😢";
-
+        questionEl.textContent = texts[currentLang].wrong;
         setTimeout(() => {
           key.classList.remove("wrong");
-          questionEl.textContent = `「${currentNote}」を押してください`;
+          questionEl.textContent =
+            texts[currentLang].question(currentNote);
         }, 500);
       }
     }
@@ -101,3 +136,5 @@ keys.forEach((key) => {
   });
 });
 
+// 初期表示
+updateLanguage();
